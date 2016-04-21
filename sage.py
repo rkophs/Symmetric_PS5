@@ -2,7 +2,7 @@
 # @Author: ryan
 # @Date:   2016-04-20 23:05:05
 # @Last Modified by:   Ryan Kophs
-# @Last Modified time: 2016-04-20 23:24:55
+# @Last Modified time: 2016-04-20 23:26:52
 
 print "====Problem 7===="
 sbox = [0x6, 0x4, 0xC, 0x5, 0x0, 0x7, 0x2, 0xE, 0x1, 0xF, 0x3, 0xD, 0x8, 0xA, 0x9, 0xB]
@@ -30,7 +30,7 @@ while i < len(matrix):
 	print(matrix[i])
 	i = i + 1
 
-print "====Problem 7===="
+print "====Problem 8===="
 def lin_matrix(sbox):
 	matrix = []
 	for i in xrange(0, 16):
