@@ -2,7 +2,7 @@
 # @Author: ryan
 # @Date:   2016-04-20 20:38:11
 # @Last Modified by:   Ryan Kophs
-# @Last Modified time: 2016-04-20 20:56:42
+# @Last Modified time: 2016-04-20 21:01:15
 
 #Problem 1
 
@@ -22,7 +22,13 @@ def TOY(message, key):
 def TOYinv(ciphertext, key):
 	return Sinv(ciphertext) ^ key
 
-def test1():
+# For message = 0x8 and ciphertext = 0x9: key = 0x6
+def brute_force_TOY(message, ciphertext):
+	for k in xrange(0, 16):
+		if message == TOYinv(ciphertext, k):
+			return k
+
+def testToyAndToyInv():
 	for i in xrange(0, 16):
 		for k in xrange(0, 16):
 			print (int(i) == int(TOYinv(TOY(i, k), k)))
