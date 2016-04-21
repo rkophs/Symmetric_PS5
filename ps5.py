@@ -2,7 +2,7 @@
 # @Author: ryan
 # @Date:   2016-04-20 20:38:11
 # @Last Modified by:   Ryan Kophs
-# @Last Modified time: 2016-04-20 20:51:07
+# @Last Modified time: 2016-04-20 20:56:42
 
 #Problem 1
 
@@ -14,13 +14,15 @@ def Sinv(x):
 	s = [0x4, 0x8, 0x6, 0xA, 0x1, 0x3, 0x0, 0x5, 0xC, 0xE, 0xD, 0xF, 0x2, 0xB, 0x7, 0x9]
 	return s[x]
 
+# For message = 0x4 and key = 0xA: ciphertext = 0x9
 def TOY(message, key):
 	return S(message ^ key)
 
-
+# For ciphertext = 0xF and key = 0x6: message = 0xF
 def TOYinv(ciphertext, key):
 	return Sinv(ciphertext) ^ key
 
-for i in xrange(0, 16):
-	for k in xrange(0, 16):
-		print (int(i) == int(TOYinv(TOY(i, k), k)))
+def test1():
+	for i in xrange(0, 16):
+		for k in xrange(0, 16):
+			print (int(i) == int(TOYinv(TOY(i, k), k)))
