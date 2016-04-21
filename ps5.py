@@ -2,7 +2,7 @@
 # @Author: ryan
 # @Date:   2016-04-20 20:38:11
 # @Last Modified by:   Ryan Kophs
-# @Last Modified time: 2016-04-20 21:01:15
+# @Last Modified time: 2016-04-20 21:15:23
 
 #Problem 1
 
@@ -22,6 +22,12 @@ def TOY(message, key):
 def TOYinv(ciphertext, key):
 	return Sinv(ciphertext) ^ key
 
+# For message = 0x5 and key = 0x14: ciphertext = 0x0
+def TwoTOY(message, key):
+	k0 = (key >> 4) & 0xF
+	k1 = key & 0xF
+	return TOY(TOY(message, k0), k1)
+
 # For message = 0x8 and ciphertext = 0x9: key = 0x6
 def brute_force_TOY(message, ciphertext):
 	for k in xrange(0, 16):
@@ -32,3 +38,5 @@ def testToyAndToyInv():
 	for i in xrange(0, 16):
 		for k in xrange(0, 16):
 			print (int(i) == int(TOYinv(TOY(i, k), k)))
+
+print TwoTOY(0x5, 0x14)
