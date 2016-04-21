@@ -2,7 +2,7 @@
 # @Author: ryan
 # @Date:   2016-04-20 20:38:11
 # @Last Modified by:   Ryan Kophs
-# @Last Modified time: 2016-04-20 21:15:23
+# @Last Modified time: 2016-04-20 21:47:55
 
 #Problem 1
 
@@ -28,6 +28,24 @@ def TwoTOY(message, key):
 	k1 = key & 0xF
 	return TOY(TOY(message, k0), k1)
 
+# For message = 0xA and ciphertext = 0xB: k = 0x30
+def mitm_TwoTOY(message, ciphertext):
+	state = {}
+	for k0 in range(0, 16):
+		v = TOY(message, k0)
+		state[v] = k0
+
+	for k1 in range(0, 16):
+		v = TOYinv(ciphertext, k1)
+		if v in state.keys():
+			print "found"
+			print v
+			print k1
+			print state
+			return ((state[v] << 4) | k1)
+
+	return None
+
 # For message = 0x8 and ciphertext = 0x9: key = 0x6
 def brute_force_TOY(message, ciphertext):
 	for k in xrange(0, 16):
@@ -39,4 +57,5 @@ def testToyAndToyInv():
 		for k in xrange(0, 16):
 			print (int(i) == int(TOYinv(TOY(i, k), k)))
 
-print TwoTOY(0x5, 0x14)
+print hex(mitm_TwoTOY(0xA, 0xB))
+
