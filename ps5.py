@@ -2,7 +2,7 @@
 # @Author: ryan
 # @Date:   2016-04-20 20:38:11
 # @Last Modified by:   Ryan Kophs
-# @Last Modified time: 2016-04-20 21:47:55
+# @Last Modified time: 2016-04-20 21:48:14
 
 #Problem 1
 
@@ -38,12 +38,7 @@ def mitm_TwoTOY(message, ciphertext):
 	for k1 in range(0, 16):
 		v = TOYinv(ciphertext, k1)
 		if v in state.keys():
-			print "found"
-			print v
-			print k1
-			print state
 			return ((state[v] << 4) | k1)
-
 	return None
 
 # For message = 0x8 and ciphertext = 0x9: key = 0x6
